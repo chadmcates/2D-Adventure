@@ -21,6 +21,9 @@ public class PlayerControl : MonoBehaviour
     //Reference to feet collider
     public CircleCollider2D FeetCollider = null;
 
+    //Reference to the character animator
+    public Animator animator;
+
     //Are we touching the ground?
     public bool isGrounded = false;
 
@@ -126,6 +129,9 @@ public class PlayerControl : MonoBehaviour
         isGrounded = GetGrounded();
         float Horz = CrossPlatformInputManager.GetAxis(HorzAxis);
         ThisBody.AddForce(Vector2.right * Horz * MaxSpeed);
+
+        //Update our animator parameter
+        animator.SetFloat("Speed", ThisBody.velocity.magnitude);
 
         if (CrossPlatformInputManager.GetButton(JumpButton))
             Jump();
