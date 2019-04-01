@@ -27,9 +27,12 @@ public class PlayerControl : MonoBehaviour
     //Are we touching the ground?
     public bool isGrounded = false;
 
+    //Are we hurt?
+    public bool isHurt = false;
+
     //What are the main input axes
     public string HorzAxis = "Horizontal";
-
+    public string VertAxis = "Vertical";
     public string JumpButton = "Jump";
 
     //Speed variables
@@ -128,10 +131,19 @@ public class PlayerControl : MonoBehaviour
         //Update grounded status
         isGrounded = GetGrounded();
         float Horz = CrossPlatformInputManager.GetAxis(HorzAxis);
+        float Vert = CrossPlatformInputManager.GetAxis(VertAxis);
+
+        //Are we crouching
+        bool crouched = false;
+        if ( Vert < -.01 ) crouched = true;
+
         ThisBody.AddForce(Vector2.right * Horz * MaxSpeed);
 
-        //Update our animator parameter
+        //Update our animator parameters
         animator.SetFloat("Speed", ThisBody.velocity.magnitude);
+        animator.SetBool("isJumping", !isGrounded);
+        animator.SetBool("isCrouching", crouched);
+        animator.SetBool("isHurt", isHurt);
 
         if (CrossPlatformInputManager.GetButton(JumpButton))
             Jump();

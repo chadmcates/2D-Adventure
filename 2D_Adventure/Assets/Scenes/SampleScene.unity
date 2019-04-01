@@ -660,11 +660,13 @@ MonoBehaviour:
   FeetCollider: {fileID: 1212628952}
   animator: {fileID: 1212628948}
   isGrounded: 0
+  isHurt: 0
   HorzAxis: Horizontal
+  VertAxis: Vertical
   JumpButton: Jump
   MaxSpeed: 1.5
   JumpPower: 10
-  JumpTimeOut: 0.6
+  JumpTimeOut: 0.1
   CanControl: 1
 --- !u!1 &1629279059
 GameObject:
