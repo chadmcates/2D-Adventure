@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -174,4 +175,22 @@ public class PlayerControl : MonoBehaviour
         Health = 100f;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log(other.tag);
+        
+        if ( other.CompareTag("KillObject") )
+        {
+            isHurt = true;
+            animator.SetBool("isHurt", isHurt);
+            CanControl = false;
+            Reset();
+            Invoke("Restart", 2);
+        }
+    }
+
+    private void Restart()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
