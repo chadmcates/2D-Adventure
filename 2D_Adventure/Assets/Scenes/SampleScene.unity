@@ -450,8 +450,8 @@ MonoBehaviour:
   followSpeed: 12
   target: {fileID: 1212628947}
   offset: {x: 0, y: 0, z: 0}
-  clampX: 1
-  clampY: 0
+  clampX: 0
+  clampY: 1
   clampZ: 0
 --- !u!1001 &396290175
 PrefabInstance:
