@@ -185,6 +185,7 @@ public class PlayerControl : MonoBehaviour
             animator.SetBool("isHurt", isHurt);
             CanControl = false;
             Reset();
+            ThisBody.velocity = new Vector2(0, ThisBody.velocity.y);
             Invoke("Restart", 2);
         }
     }
